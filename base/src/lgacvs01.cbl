@@ -77,7 +77,6 @@
              MOVE '80' TO CA-RETURN-CODE
              PERFORM WRITE-ERROR-MESSAGE
              EXEC CICS ABEND ABCODE('LGV0') NODUMP END-EXEC
-             EXEC CICS RETURN END-EXEC
            End-If.
 
       *---------------------------------------------------------------*

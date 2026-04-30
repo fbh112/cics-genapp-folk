@@ -1,0 +1,356 @@
+{
+  "version": "2.0.0",
+  "entries": [
+    {
+      "name": "CA-CUSTOMER-NUM",
+      "type": "variable",
+      "shortDescription": "Communication Area Customer Number",
+      "longDescription": "A 10-digit numeric field within the communication area that uniquely identifies a customer record in the GenApp system. Used to retrieve, add, or update customer information across linked programs (LGICUS01, LGACUS01, LGUCUS01).",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-FIRST-NAME",
+      "type": "variable",
+      "shortDescription": "Communication Area First Name",
+      "longDescription": "An alphanumeric field in the communication area storing the customer's first name. Transferred between the presentation layer (LGTESTC1) and business logic programs for customer inquiries, additions, and updates.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-LAST-NAME",
+      "type": "variable",
+      "shortDescription": "Communication Area Last Name",
+      "longDescription": "An alphanumeric field in the communication area storing the customer's last name or surname. Essential for customer identification and record management across the GenApp customer transaction workflow.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-DOB",
+      "type": "variable",
+      "shortDescription": "Communication Area Date of Birth",
+      "longDescription": "A date field in the communication area representing the customer's date of birth. Used for customer verification, age calculations, and compliance requirements in insurance policy management.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-HOUSE-NAME",
+      "type": "variable",
+      "shortDescription": "Communication Area House Name",
+      "longDescription": "An alphanumeric field storing the name of the customer's residence (e.g., 'Rose Cottage', 'The Willows'). Part of the customer's address information used for correspondence and policy documentation.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-HOUSE-NUM",
+      "type": "variable",
+      "shortDescription": "Communication Area House Number",
+      "longDescription": "An alphanumeric field containing the street number or building number of the customer's residence. Combined with other address fields to form the complete customer address.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-POSTCODE",
+      "type": "variable",
+      "shortDescription": "Communication Area Postcode",
+      "longDescription": "An alphanumeric field storing the customer's postal code or ZIP code. Automatically converted to uppercase for standardization. Critical for address validation, geographic analysis, and mail delivery.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-PHONE-MOBILE",
+      "type": "variable",
+      "shortDescription": "Communication Area Phone Mobile",
+      "longDescription": "An alphanumeric field containing the customer's mobile telephone number. Primary contact method for urgent communications, policy updates, and claim notifications.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-PHONE-HOME",
+      "type": "variable",
+      "shortDescription": "Communication Area Phone Home",
+      "longDescription": "An alphanumeric field storing the customer's home or landline telephone number. Secondary contact method used for customer service calls and policy correspondence.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-EMAIL-ADDRESS",
+      "type": "variable",
+      "shortDescription": "Communication Area Email Address",
+      "longDescription": "An alphanumeric field containing the customer's email address. Used for electronic correspondence, policy documents, renewal notices, and digital communication preferences.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-REQUEST-ID",
+      "type": "variable",
+      "shortDescription": "Communication Area Request Identifier",
+      "longDescription": "A 5-character code identifying the type of business operation being performed. Values include '01ICUS' (Inquire Customer), '01ACUS' (Add Customer), '01UCUS' (Update Customer). Directs program flow to appropriate business logic modules.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "CA-RETURN-CODE",
+      "type": "variable",
+      "shortDescription": "Communication Area Return Code",
+      "longDescription": "A numeric field indicating the success or failure status of linked program execution. A value greater than 0 indicates an error condition, triggering error handling routines and user notifications. In LGICUS01, it is initialized to '00' for success and set to '98' if the commarea length is insufficient.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        },
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "COMM-AREA",
+      "type": "variable",
+      "shortDescription": "Communication Area",
+      "longDescription": "A 32,500-byte data structure used to pass information between CICS programs via EXEC CICS LINK commands. Contains all customer data fields and control information needed for transaction processing across the GenApp application.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "STSQ-NAME",
+      "type": "variable",
+      "shortDescription": "Temporary Storage Queue Name",
+      "longDescription": "An 8-character field with value 'GENACNTL' identifying the temporary storage queue used to track customer number ranges. Enables concurrent access control and maintains high/low customer number boundaries for the application.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "WS-FLAG-TSQH",
+      "type": "variable",
+      "shortDescription": "Working Storage Flag Temporary Storage Queue High",
+      "longDescription": "A single-character flag ('Y' or space) indicating whether the high customer number entry exists in the temporary storage queue. Controls logic for initializing or updating customer number tracking records.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGTESTC1"
+        }
+      ]
+    },
+    {
+      "name": "DFHCOMMAREA",
+      "type": "variable",
+      "shortDescription": "CICS Communication Area",
+      "longDescription": "The primary data structure used to pass information between CICS programs via EXEC CICS LINK commands. Contains all customer data fields, control information, and return codes needed for transaction processing across the GenApp application. In LGICUS01, it receives customer inquiry requests and returns customer details retrieved from the database.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "WS-REQUIRED-CA-LEN",
+      "type": "variable",
+      "shortDescription": "Working Storage Required Communication Area Length",
+      "longDescription": "A computed field that calculates the minimum required length of the communication area for the current transaction. Combines the customer data length (WS-CUSTOMER-LEN) with header/trailer overhead (WS-CA-HEADERTRAILER-LEN) to validate that the incoming commarea is large enough to process the customer inquiry request.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "LGICDB01",
+      "type": "variable",
+      "shortDescription": "Linked Program Name for Customer Inquiry Database Access",
+      "longDescription": "An 8-character literal field containing the program name 'LGICDB01', which is the database access layer program responsible for retrieving customer details from Db2. Used in the EXEC CICS LINK command to delegate database operations, following the 3-tier architecture pattern (presentation → business logic → data management).",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "WS-CUSTOMER-LEN",
+      "type": "variable",
+      "shortDescription": "Working Storage Customer Length",
+      "longDescription": "A numeric field from the LGPOLICY copybook that defines the length of the customer data structure within the communication area. Used to calculate the minimum required commarea length (WS-REQUIRED-CA-LEN) to ensure sufficient space exists for customer inquiry data before processing the request.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "CA-NUM-POLICIES",
+      "type": "variable",
+      "shortDescription": "Communication Area Number of Policies",
+      "longDescription": "A numeric field in the communication area that tracks the count of insurance policies associated with a customer. Initialized to '00' in LGICUS01 during customer inquiry processing and may be populated by downstream programs to indicate the total number of active policies for the customer.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "ERROR-MSG",
+      "type": "variable",
+      "shortDescription": "Error Message Structure",
+      "longDescription": "A formatted error message structure containing date, time, program name (LGICUS01), and a variable error description field (EM-VARIABLE). Used to log diagnostic information to temporary storage queues via the LGSTSQ program when critical errors occur, such as missing commarea or validation failures.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "EM-VARIABLE",
+      "type": "variable",
+      "shortDescription": "Error Message Variable Description",
+      "longDescription": "A 21-character field within the ERROR-MSG structure that contains the specific error description text. In LGICUS01, it is set to ' NO COMMAREA RECEIVED' when the program is invoked without a communication area, providing diagnostic context for error investigation.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "WS-CALEN",
+      "type": "variable",
+      "shortDescription": "Working Storage Communication Area Length",
+      "longDescription": "A computational field that stores the actual length of the received communication area (EIBCALEN). Used to validate that the incoming commarea meets the minimum required length before processing the customer inquiry request, preventing data truncation errors.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "WS-CA-HEADERTRAILER-LEN",
+      "type": "variable",
+      "shortDescription": "Working Storage Communication Area Header Trailer Length",
+      "longDescription": "A constant field with value +18 representing the fixed overhead bytes required for communication area header and trailer information. Added to the customer data length to calculate the total minimum commarea size needed for successful transaction processing.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "WS-ABSTIME",
+      "type": "variable",
+      "shortDescription": "Working Storage Absolute Time",
+      "longDescription": "A computational field that stores the CICS absolute time value obtained via EXEC CICS ASKTIME. Used as input to EXEC CICS FORMATTIME to generate human-readable date and time stamps for error messages written to temporary storage queues.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "WS-DATE",
+      "type": "variable",
+      "shortDescription": "Working Storage Date",
+      "longDescription": "An 8-character field that stores the formatted date in MMDDYYYY format, obtained by converting WS-ABSTIME via EXEC CICS FORMATTIME. Included in error messages (EM-DATE) to provide temporal context for diagnostic logging and troubleshooting.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "WS-TIME",
+      "type": "variable",
+      "shortDescription": "Working Storage Time",
+      "longDescription": "An 8-character field that stores the formatted time obtained by converting WS-ABSTIME via EXEC CICS FORMATTIME. Included in error messages (EM-TIME) to provide precise timing information for error events and transaction auditing.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "CA-DATA",
+      "type": "variable",
+      "shortDescription": "Communication Area Data",
+      "longDescription": "A 90-character field within the CA-ERROR-MSG structure that captures a snapshot of the communication area contents when errors occur. Used for diagnostic purposes to log the first 90 bytes (or actual length if smaller) of the commarea to temporary storage queues, enabling analysis of invalid or malformed input data.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    },
+    {
+      "name": "WS-ADDR-DFHCOMMAREA",
+      "type": "variable",
+      "shortDescription": "Working Storage Address of CICS Communication Area",
+      "longDescription": "A POINTER field that stores the memory address of the DFHCOMMAREA structure. Set via the SET statement to establish addressability to the communication area, enabling the program to access and manipulate commarea fields during customer inquiry processing.",
+      "origin": "AI",
+      "scope": [
+        {
+          "programName": "LGICUS01"
+        }
+      ]
+    }
+  ]
+}
