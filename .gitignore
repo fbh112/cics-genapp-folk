@@ -1,2 +1,5 @@
 base/src/.DS_Store
 base/.DS_Store
+
+# Bob Z Extension - Local settings and generated files
+.bobz/
