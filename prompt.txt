@@ -1,0 +1,84 @@
+
+## Step 1 — Init: Create local meta database
+prompt:
+/init
+Create local metadata database
+update the AGENTS.md file so all the created file are saved under docs/ folder
+
+
+## Step 2 — Application inventory
+
+prompt:
+Generate a complete inventory of the genapp application, with for each program, their type, role, and dependencies (used copybooks, BMS screens, DB2 tables and files used - with access mode -, queues, and called programs).
+
+
+## Step 3 — Db2 table CRUD matrix
+prompt:
+Create a CRUD matrix for the Db2 tables.
+
+
+## Step 4 — Find functional domains
+prompt:
+Identify the main functional domains or subsystems in this application, covering both online (CICS) and batch processing.
+For each domain, briefly show its business responsibility, main programs (CICS modules and batch programs), transactions, batch jobs (JCL), data stores, and key dependencies.
+Draw a domain map: one diagram showing the domains and how they interact (program calls, shared tables and files, queues, interfaces), so the boundaries between domains are visible at a glance.
+
+
+
+## Step 5 — Focus on the {select_domain} domain: find its boundary
+prompt:
+Analyse the {select_domain} domain and document the boundaries.
+- Components and their roles: list every CICS module, batch job (JCL steps and the programs they run), Db2 table, file, queue and copybook involved, with its role and whether it belongs to {select_domain} alone or is shared with other domains.
+- Visualize the boundaries in the {select_domain} domain, organized by functional topics, showing the components, their roles and the data flows between them.
+- Batch: for each batch job in or touching the domain, show its steps, programs, input and output datasets and tables, and which other domains its data comes from or goes to. If there is no batch processing, say so.
+- Db2 usage: list every program and batch job, inside or outside {select_domain}, that reads or writes the domain's Db2 tables, with its access mode.
+- Integration points with other domains: list every module that calls, or is called by, programs in other domains, or that shares data with them – caller, callee, mechanism (LINK, START, CALL, shared table or file, queue) and the data passed. These are the places to modify when {select_domain} moves off the mainframe.
+- External interfaces: list every interface between the domain's mainframe components and distributed components – CICS web services, CICS Transaction Gateway (ECI/EPI), MQ queues, DPL, sockets, file transfers, events – with direction, contract (copybook or schema), the programs behind it, and its known consumers.
+
+
+## Step 6 — Business rules
+prompt:
+
+Focus on the {select_domain} domain, extract the business level rules and behaviours that would need to be preserved if {select_domain} were migrated off the mainframe.
+
+Focus on business validations, constraints, calculations, entity relationships and business outcomes, in both online and batch processing.
+
+Ignore generic error handling, logging, routing and other implementation specific logic unless it represents a business constraint.
+
+For each rule, give: an ID, the rule in business terms, conditions and outcome, where it is implemented (program and paragraph or procedure), the data involved, whether it is explicit in the code or inferred, and an example (input and expected result) that could be used to verify the same rule in the target system.
+
+Format the result so it can be published as-is to a wiki page such as Confluence (headings, one table per functional topic). Do not propose a target implementation.
+
+
+
+## Step 7 — Migration hotspots
+prompt:
+
+Based on this analysis, identify the main migration hotspots for separating the {select_domain} domain.
+
+Focus on shared modules, shared data, highly coupled programs, and dependencies crossing the domain boundary.
+
+Also show the application-wide hotspots: the modules, copybooks, Db2 tables, files and queues that are used or called by the largest number of domains, and are therefore especially critical to change. Rank them by how many domains depend on them, and mark which of them {select_domain} uses.
+
+Rank the hotspots by migration risk and explain why they matter.
+
+## Step 8 - program  documentation
+workflow
+
+## Step 9 - application documentation
+workflow
+
+## Use case coverage (Kela use cases for watsonx Code Assistant for Z)
+
+| Use case | Covered by |
+| --- | --- |
+| 1. Boundaries between CICS-based systems, visualized | Step 4 (domain map), Step 5 (boundary diagram) |
+| 2. Boundaries and functionality of batch jobs (JCL + code) | Step 4 (batch per domain), Step 5 (batch jobs in the domain) |
+| 3. Modules that integrate with other systems | Step 5 (integration points), Step 7 (cross-boundary hotspots) |
+| 4. Modules that use the Db2 tables of the system being moved | Step 3 (CRUD matrix), Step 5 (Db2 usage) |
+| 5. Roles of components (CICS modules, batch jobs, Db2 tables), visualized | Step 5 (components and roles, diagram) |
+| 6. Integration interfaces (CTG, MQ, ...) to distributed components | Step 5 (external interfaces) |
+| 7. Business rules published to Confluence, used to design target rules | Step 6 |
+| 8. Generated documentation alongside existing documentation | Step 4 (uses existing docs), Steps 8-9 |
+| 9. Application-wide hotspots: modules and tables used by many systems | Step 3 (table usage counts), Step 7 (application-wide hotspots) |
+| 10. Programmer reads generated documentation of a module | Step 8 |
